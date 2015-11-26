@@ -1,0 +1,72 @@
+< !DOCTYPE html>
+<html>
+<head>
+<title>Quizzer</title>
+<script type="text/javascript">
+// From: http://www.webdeveloper.com/forum/showthread.php?p=1148254#post1148254
+
+function Question( q, a1, a2, a3, a4, a5 ) {
+	this.query = q;
+	this.answers = [ a1, a2, a3, a4 ];
+	this.correct = a5;
+}
+var questions = [
+	new Question( "How many states are there?", 48, 49, 50, 51, 2 ),
+	new Question( "What is the capital of Idaho?","Idaho Falls","Boise","Pocatello","$1.98",1),
+	new Question( "What state is the Grand Canyon in?", "CA", "AZ", "CO", "Confusion",1),
+	new Question( "What is the capital of South Carolina?", "Charlotte", "Greenville", "Columbia", "Charleston",1),
+	new Question( "What color is the page?", "White", "Yellow", "10", "Confusion",0)
+// NO COMMA after last entry
+];
+
+function initQuiz() {
+// randomly order the questions...
+  questions.sort( function() { return Math.random() - 0.5; } );
+
+  var str = '';
+  str += "<ol>";
+	
+display the randomized questions:
+  for ( var qnum = 0; qnum < questions.length; ++qnum ) {
+	var q = questions[qnum];
+	str += '<li class="question">' + q.query 
+		 + "<ol><li><label><input type='radio' name='group"+qnum+"' />" 
+		 + q.answers.join("</label></li><li><label><input type='radio' name='group"+qnum+"' />") 
+		 + "</label></li></ol></li>";
+  }
+  str += "</ol>";
+  return str;
+}
+
+function getRBtnName(GrpName) {
+  var sel = document.getElementsByName(GrpName);
+  var fnd = -1;
+  var str = '';
+  for (var i=0; i<sel.length; i++) {
+    if (sel[i].checked == true) { str = sel[i].value;  fnd = i; }
+  }
+  return fnd;   // return option index of selection
+// comment out next line if option index used in line above  
+//  return str;
+} 
+
+// check answers
+function validate() {
+  var score = 0;  var tmp = '';
+  for (var i=0; i<questions.length; i++) {
+	tmp = 'group'+i;
+	if (getRBtnName(tmp) == questions[i].correct) { score++; }
+  }
+  alert('Score is: '+score+'\nof '+questions.length+' questions');
+  return false;
+}
+
+</script>
+</head>
+<body>
+  <form name="myForm" onsubmit="return validate()">
+<script type="text/javascript"> document.write(initQuiz()); </script>
+  <input type="submit" />
+  </form>
+</body>
+</html>

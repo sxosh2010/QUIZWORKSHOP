@@ -2,74 +2,89 @@
 <html>
 <head>
 	<meta charset="utf-8">
-<link rel="stylesheet" href="bootstrap.min.css">
+	<link rel="stylesheet" href="bootstrap.min.css">
 	<script src="jquery.min.js"></script>
+	<script src="bootstrap.min.js"></script>
 
-<script src="bootstrap.min.js"></script>
 
-<script type="text/javascript">
-
-// $(function(){
-// 	$("#submit").on("click",function(){
-// 	alert("make it boom");
-// });
-// });
-$(function(){
-	$("#yhee_my_quizz").submit(function(evt){
-		evt.preventDefault();
-		var answers = $ (this).serializeArray();
-		var answersString = JSON.stringify(answers);
-		alert(answersString);
-
-	});
-});
-</script>
 
 </head>
 <body>
-	
-<div class="container">
- 	<form id="yhee_my_quizz">	
+
+<div class="col-md-8">
+	<form id="quizz">
+	  <div class="container">
+ 		
 		<h1>MY SPORT QUIZZ</h1>
 
-
-		<H2>what is the most popullar sport in SA?</H2>
-		<div class = "">
-			
-		<!-- <legend>sizes</legend> -->
-			<input type="radio" name="question1" value="under water hockey">under water hockey
-			<br>
-			<input type="radio" name="question1" value="rugby">rugby
-			<br>
-			<input type="radio" name="question1" value="soccer">soccer
-			<br>
-		</div>
-
-		div class = "">
-
-		<H2>For which sport do you need a racket</H2>
-		<input type="radio" name="question2" value="squash">squash
-		<br>
-		<input type="radio" name="question2" value="tennis">tennis
-		<br>
-		<input type="radio" name="question2" value="netball">netball
-		<br>
-		</div>
-
-		<div class = "">
-			 <H2>which sport use the word 'love'?</H2>
-			 <input type="radio" name="question3" value="squash">squash
-			 <br>
-			 <input type="radio" name="question3" value="tennis">tennis
+			<H2>what is the most popular sport in SA?</H2>
+				<div class = "popular">
+						
+					<input type="radio" name="question1" value="under water hockey">under water hockey
 				<br>
-			 <input type="radio" name="question3" value="netball">netball
-              <br>
-		</div>
-		<button id="submit" class="btn btn-primary" type="submit">submit</button>
+					<input type="radio" name="question1" value="rugby">rugby
+				<br>
+					<input type="radio" name="question1" value="soccer">soccer
+							
+				</div>
 
-		</form>
+			<H2>For which sport do you need a racket</H2>
+
+				<div class = "need">
+						<input type="radio" name="question2" value="squash">squash
+					<br>
+						<input type="radio" name="question2" value="tennis">tennis
+					<br>
+						<input type="radio" name="question2" value="netball">netball
+
+				</div>
+
+			 <H2>which sport use the word 'love'?</H2>
+
+               <div class = "use">
+	                 <input type="radio" name="question3" value="squash">squash
+                   <br>
+	              <input type="radio" name="question3" value="tennis">tennis
+                  <br>
+	          <input type="radio" name="question3" value="netball">netball
+
+      </div>
+        <button id="submit" class="btn btn-primary" type="submit">submit</button>
+
+</form>
+</div>
 </div>
 
+   
+  <script type="text/javascript">
+
+
+
+
+      $(function(){
+	  $("#quizz").submit(function(evt){
+		evt.preventDefault();
+		var answers =$(this).serializeArray();
+		var answersString =JSON.stringify(answers);
+		$('#Answers').html(answersString);
+		
+	    });
+});
+
+      for(var i=0; i < data.users[0].influencers.length; i++) {
+  alert(data.users[0].influencers[i].score);
+} 
+
+
+</script>
+
+    <div class="col-md-4">
+   	<h1>ANSWERS:</h1>
+   	<div id="Answers">
+   	</div>
+  </div>
+
 </body>
+
 
 </html>
